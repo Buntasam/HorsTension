@@ -1,0 +1,78 @@
+# Compile l'app iPhone sur un Mac de GitHub (gratuit) et publie un fichier .ipa non signé.
+# SideStore se charge ensuite de le signer avec ton compte Apple et de l'installer.
+name: Build iOS (.ipa)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ios-build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: macos-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Installer les dépendances
+        run: npm ci
+
+      - name: Générer le projet iOS
+        run: npx expo prebuild --platform ios --clean
+        env:
+          CI: 1
+
+      - name: Compiler (sans signature)
+        run: |
+          WORKSPACE=$(ls -d ios/*.xcworkspace | head -n 1)
+          SCHEME=$(basename "$WORKSPACE" .xcworkspace)
+          echo "Workspace: $WORKSPACE / Scheme: $SCHEME"
+          set -o pipefail
+          xcodebuild \
+            -workspace "$WORKSPACE" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY="" \
+            build | tail -n 200
+
+      - name: Créer le fichier .ipa
+        run: |
+          APP=$(ls -d build/Build/Products/Release-iphoneos/*.app | head -n 1)
+          mkdir -p Payload
+          cp -R "$APP" Payload/
+          zip -qry HorsTension.ipa Payload
+          ls -lh HorsTension.ipa
+
+      - name: Garder le .ipa dans le build
+        uses: actions/upload-artifact@v4
+        with:
+          name: HorsTension-ipa
+          path: HorsTension.ipa
+
+      # Une "release" GitHub donne un lien de téléchargement simple, à ouvrir depuis Safari sur l'iPhone.
+      - name: Publier la release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="build-${{ github.run_number }}"
+          gh release create "$TAG" HorsTension.ipa \
+            --title "Hors Tension #${{ github.run_number }}" \
+            --notes "Version compilée depuis ${GITHUB_SHA::7}. Télécharge HorsTension.ipa depuis Safari puis installe-le avec SideStore." \
+            --latest
