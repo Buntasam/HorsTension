@@ -1,21 +1,32 @@
-The MIT License (MIT)
+Copyright (c) 2026 Buntasam. Tous droits réservés. / All rights reserved.
 
-Copyright (c) 2015-present 650 Industries, Inc. (aka Expo)
+FRANÇAIS
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Ce logiciel et son code source (« Hors Tension ») sont la propriété exclusive
+de leur auteur. Le dépôt est rendu public uniquement pour permettre
+l'installation de l'application par son auteur.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Aucune licence n'est accordée. Sans l'autorisation écrite préalable de
+l'auteur, il est interdit de copier, modifier, fusionner, publier, distribuer,
+sous-licencier, vendre ou réutiliser tout ou partie de ce logiciel ou de son
+code source, que ce soit à des fins commerciales ou non.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+La simple consultation du code sur GitHub, ainsi que les copies techniques
+qu'impliquent les conditions d'utilisation de GitHub, ne confèrent aucun
+autre droit.
+
+ENGLISH
+
+This software and its source code ("Hors Tension") are the exclusive property
+of their author. This repository is public solely so that the author can
+install the application.
+
+No license is granted. Without the author's prior written permission, you may
+not copy, modify, merge, publish, distribute, sublicense, sell or reuse any
+part of this software or its source code, for commercial or non-commercial
+purposes.
+
+Viewing the code on GitHub, and the technical copies required by GitHub's
+Terms of Service, grant no further rights.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.

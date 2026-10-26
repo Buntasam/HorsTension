@@ -1,6 +1,7 @@
 {
   "name": "hors-tension",
   "version": "1.0.0",
+  "license": "UNLICENSED",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo/vector-icons": "^15.0.2",
